@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PåskÆgg</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 class="mt-5 mb-3">Easter Eggs</h1>
+
+        <!-- Display Easter eggs -->
+        <div v-if="loading" class="text-center">Loading...</div>
+        <ul v-else class="list-group">
+            <li v-for="egg in  InStock" :key="egg.ProductNo" class="list-group-item">
+                <!-- <h5 class="mb-1">{{ egg.name }}</h5> -->
+                <p class="mb-1">Product No: {{egg.ProductNo}}</p>
+                <p class="mb-1">Chocolate Type: {{egg.ChocolateType}}</p>
+                <p class="mb-1">Price: {{ egg.Price }}</p>
+                <p class="mb-0">Amount: {{ egg.Amount }}</p>
+            </li>
+        </ul>
+
+        <input type="number" v-model="minStockLevel" placeholder="Enter minimum stock level">
+        <button @click="filterEggs">Filter</button>
+        <div v-if="loading" class="text-center">Loading...</div>
+        <ul v-else class="list-group">
+            <li v-for="egg in  InStock" :key="egg.ProductNo" class="list-group-item">
+                <!-- <h5 class="mb-1">{{ egg.name }}</h5> -->
+                <p class="mb-1">Product No: {{egg.ProductNo}}</p>
+                <p class="mb-1">Chocolate Type: {{egg.ChocolateType}}</p>
+                <p class="mb-1">Price: {{ egg.Price }}</p>
+                <p class="mb-0">Amount: {{ egg.Amount }}</p>
+            </li>
+        </ul>
+        
+        <ul>
+            <li v-for="item in filteredEggs" :key="item.ProductNo">
+                {{item.ProductNo}}:{{item.ChocolateType}}:{{item.Price}}:{{item.Amount}}
+            </li>
+        </ul> 
+        
+        <ul >
+            <li v-for="item in InStock" :key="item.ProductNo">
+                {{item.ProductNo}}:{{item.ChocolateType}}:{{item.Price}}:{{item.Amount}}
+
+            </li>
+
+        </ul> 
+        <input type="number" v-model="tarketProductNumber" placeholder="Enter ProductNo">
+        <input type="text" v-model="ChocolateType" placeholder="Enter ChocolateType ">
+        <input type="number" v-model="Price" placeholder="Enter Price">
+        <input type="number" v-model="Amount" placeholder="Amount">
+        <button @click="updateEggs()">Update</button>
+        <div v-if="loading" class="text-center">Loading...</div>
+        <ul v-else class="list-group">
+            <li v-for="egg in  InStock" :key="egg.ProductNo" class="list-group-item">
+                <!-- <h5 class="mb-1">{{ egg.name }}</h5> -->
+                <p class="mb-1">Product No: {{egg.ProductNo}}</p>
+                <p class="mb-1">Chocolate Type: {{egg.ChocolateType}}</p>
+                <p class="mb-1">Price: {{ egg.Price }}</p>
+                <p class="mb-0">Amount: {{ egg.Amount }}</p>
+            </li>
+        </ul>
+
+        <!-- <ul >
+            <li v-for="item in InStock" :key="item.ProductNo">
+                {{item.ProductNo}}:{{item.ChocolateType}}:{{item.Price}}:{{item.Amount}}
+
+            </li>
+
+        </ul> -->
+        <input type="number" v-model="tarketProductNumber" placeholder="Enter ProductNo">
+        <button @click="RemoveEgg()">Delete</button>
+        <!-- <ul >
+            <li v-for="item in InStock" :key="item.ProductNo">
+                {{item.ProductNo}}:{{item.ChocolateType}}:{{item.Price}}:{{item.Amount}}
+
+            </li>
+
+        </ul> -->
+        <div v-if="loading" class="text-center">Loading...</div>
+        <ul v-else class="list-group">
+            <li v-for="egg in  InStock" :key="egg.ProductNo" class="list-group-item">
+                <!-- <h5 class="mb-1">{{ egg.name }}</h5> -->
+                <p class="mb-1">Product No: {{egg.ProductNo}}</p>
+                <p class="mb-1">Chocolate Type: {{egg.ChocolateType}}</p>
+                <p class="mb-1">Price: {{ egg.Price }}</p>
+                <p class="mb-0">Amount: {{ egg.Amount }}</p>
+            </li>
+        </ul>
+
+        <input type="number" v-model="ProductNo" placeholder="Enter ProductNo">
+        <input type="text" v-model="ChocolateType" placeholder="Enter ChocolateType ">
+        <input type="number" v-model="Price" placeholder="Enter Price">
+        <input type="number" v-model="Amount" placeholder="Amount">
+        <button @click=" AddEggs()">Add</button>
+
+        <!-- <ul >
+            <li v-for="item in InStock" :key="item.ProductNo">
+                {{item.ProductNo}}:{{item.ChocolateType}}:{{item.Price}}:{{item.Amount}}
+
+            </li>
+
+        </ul> -->
+        <div v-if="loading" class="text-center">Loading...</div>
+        <ul v-else class="list-group">
+            <li v-for="egg in  InStock" :key="egg.ProductNo" class="list-group-item">
+                <!-- <h5 class="mb-1">{{ egg.name }}</h5> -->
+                <p class="mb-1">Product No: {{egg.ProductNo}}</p>
+                <p class="mb-1">Chocolate Type: {{egg.ChocolateType}}</p>
+                <p class="mb-1">Price: {{ egg.Price }}</p>
+                <p class="mb-0">Amount: {{ egg.Amount }}</p>
+            </li>
+        </ul>
+
+
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
